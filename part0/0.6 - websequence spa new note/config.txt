@@ -1,0 +1,12 @@
+title SPA New Note
+
+note over browser:
+user entes note and clicks 'save',
+browser pushes new note into local notes-list.
+end note
+
+browser->server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+note right of browser:
+{ content: 'new note text', date: '2019-08-24...'}
+end note
+server-->browser: status 201: { message: 'note created' }
