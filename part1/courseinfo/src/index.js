@@ -8,10 +8,7 @@ const Header = (props) => {
 }
 
 const Content = (props) => {
-    const parts = [];
-    for (let i = 0, len = props.parts.length; i < len; i += 1) {
-        parts.push(<Part name={props.parts[i].name} exercises={props.parts[i].exercises} />)
-    }
+    const parts = props.parts.map(part => <Part name={part.name} exercises={part.exercises} />)
     return (
     <>
         {parts}
