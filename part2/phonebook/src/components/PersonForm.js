@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import personService from '../services/persons'
 
-const PersonForm = ({ onAdd, persons }) => {
+const PersonForm = ({ onAdd, persons, onPersonUpdate }) => {
     const [newName, setNewName] = useState('');
     const [newNumber, setNewNumber] = useState('');
 
@@ -16,8 +17,20 @@ const PersonForm = ({ onAdd, persons }) => {
     const addPerson = (event) => {
         event.preventDefault();
 
-        if (isPersonInPhonebook(newName)) {
-            alert(`${newName} is already added to the phonebook`);
+        const person = isPersonInPhonebook(newName);
+        if (person) {
+            if (!isNumberInPhonebook(newNumber)) {
+                const confirm = window.confirm(`${newName} is already added to the phonebook, replace the old number with a new one?`);
+                if (confirm) {
+                    const changedData = {...person, number: newNumber };
+                    personService.update(person.id, changedData)
+                        .then(response => {
+                            onPersonUpdate(changedData);
+                            setNewName('');
+                            setNewNumber('');
+                        })
+                }
+            }
             return false;
         }
         if (isNumberInPhonebook(newNumber)) {
