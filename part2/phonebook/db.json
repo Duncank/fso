@@ -1,14 +1,3 @@
 {
-  "persons": [
-    {
-      "name": "Arto Hellas",
-      "number": "1234",
-      "id": 1
-    },
-    {
-      "name": "Dan Abramov",
-      "number": "12-43-234345",
-      "id": 3
-    }
-  ]
+  "persons": []
 }

@@ -43,7 +43,7 @@ const PersonForm = ({ onAdd, persons, onPersonUpdate }) => {
             number: newNumber,
         };
 
-        onAdd(persons.concat(newPerson));
+        onAdd(newPerson);
         setNewName('');
         setNewNumber('');
     }
