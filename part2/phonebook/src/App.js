@@ -35,9 +35,13 @@ const App = () => {
     }
 
     const onAdd = (newPerson) => {
-        setPersons(persons.concat(newPerson));
-        setNotification({ type: 'success', message: `Added ${newPerson.name}` });
-        setTimeout(() => { setNotification({ type: null, message: null }) }, 2000);
+        personService.create(newPerson).then(returnedObject => {
+            setPersons(persons.concat(returnedObject));
+
+            setNotification({ type: 'success', message: `Added ${newPerson.name}` });
+            setTimeout(() => { setNotification({ type: null, message: null }) }, 2000);
+        });
+
     }
 
     const [filterName, setFilterName] = useState('');
